@@ -58,6 +58,9 @@ export class AcMapComponent implements OnChanges, OnInit {
 	@Input()
 	flyTo: any;
 
+	@Input()
+	imageryLayers: any;
+
 	constructor(private _cesiumService: CesiumService, private _elemRef: ElementRef, @Inject(DOCUMENT) private document: any) {
 		const mapContainer = this.document.createElement('div');
 		this._elemRef.nativeElement.appendChild(mapContainer);

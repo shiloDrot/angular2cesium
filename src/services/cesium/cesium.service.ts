@@ -1,6 +1,9 @@
 import { Injectable, NgZone, Optional } from '@angular/core';
 import { ViewerFactory } from '../viewer-factory/viewer-factory.service';
 import { ViewerConfiguration } from '../viewer-configuration/viewer-configuration.service';
+import { MapsProvider } from '../maps-provider/maps-provider.service';
+import { WmsProvider } from '../maps-provider/map-provider/wms-provider';
+import { MapProvider } from '../maps-provider/map-provider/map-provider';
 
 /**
  *  Service that initialize cesium viewer and expose cesium viewer and scene.
@@ -9,13 +12,15 @@ import { ViewerConfiguration } from '../viewer-configuration/viewer-configuratio
 export class CesiumService {
 	private cesiumViewer: any;
 
-	constructor(private ngZone: NgZone, private viewerFactory: ViewerFactory, @Optional() private viewConf: ViewerConfiguration) {
+	constructor(private ngZone: NgZone, private viewerFactory: ViewerFactory, private mapsProvider: MapsProvider,
+	            @Optional() private viewConf: ViewerConfiguration) {
 	}
 
 	init(mapContainer: HTMLElement) {
 		this.ngZone.runOutsideAngular(() => {
-			const options = this.viewConf ? this.viewConf.viewerOptions : undefined ;
+			const options = this.viewConf ? this.viewConf.viewerOptions : undefined;
 			this.cesiumViewer = this.viewerFactory.createViewer(mapContainer, options);
+			this.cesiumViewer.scene.imageryLayers = this.mapsProvider.getImageryLayers();
 		});
 	}
 
@@ -33,6 +38,10 @@ export class CesiumService {
 	 */
 	getScene() {
 		return this.cesiumViewer.scene;
+	}
+
+	getImageryLayers() {
+		return this.cesiumViewer.scene.imageryLayers;
 	}
 
 	/**
@@ -106,5 +115,13 @@ export class CesiumService {
 	 */
 	flyTo(options: any) {
 		this.getViewer().camera.flyTo(options);
+	}
+
+	addImageryLayers(mapProvider: MapProvider, index: number) {
+		return this.mapsProvider.addImageryLayer(mapProvider, index);
+	}
+
+	removeImageryLayers(mapProvider: MapProvider, destroy: boolean) {
+		return this.mapsProvider.removeImageryLayer(mapProvider, destroy);
 	}
 }
