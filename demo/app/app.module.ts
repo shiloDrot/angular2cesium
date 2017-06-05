@@ -19,6 +19,7 @@ import { DynamicCircleLayerComponent } from './layers/dynamic-circle-layer/dynam
 import { SymbologyLayerComponent } from './layers/symbology-layer/symbology-layer.component';
 import { PointLayerComponent } from './layers/point-layer/point-layer.component';
 import { DrawOnMapComponent } from './layers/draw-on-map-layer/draw-on-map-layer.component';
+import { EllipsePerformanceLayerComponent } from './layers/ellipse-performance-layer/ellipse-performance-layer';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { DrawOnMapComponent } from './layers/draw-on-map-layer/draw-on-map-layer
 		ArcLayerComponent,
 		SymbologyLayerComponent,
 		PointLayerComponent,
-		DrawOnMapComponent
+		DrawOnMapComponent,
+		EllipsePerformanceLayerComponent
 	],
 	imports: [
 		BrowserModule,

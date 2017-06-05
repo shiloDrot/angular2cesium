@@ -1,0 +1,11 @@
+<ac-layer acFor="let entity of ellipses$" [show]="show" [context]="this">
+    <ac-dynamic-ellipse-desc props="{
+            center:entity.ellipse.center,
+            semiMajorAxis:entity.ellipse.semiMajorAxis,
+            semiMinorAxis:entity.ellipse.semiMinorAxis,
+            rotation:entity.ellipse.rotation,
+            granularity:entity.ellipse.granularity,
+            width:entity.ellipse.width,
+            color:[0,1,0,0.5]
+        }"></ac-dynamic-ellipse-desc>
+</ac-layer>

@@ -4,7 +4,7 @@
                                 url : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
                             }">
     </ac-map-layer-provider>
-    <tracks-layer #layer></tracks-layer>
+    <!--<tracks-layer #layer></tracks-layer>-->
     <!--<ellipse-layer #layer></ellipse-layer>-->
     <!--<dynamic-ellipse-layer #layer></dynamic-ellipse-layer>-->
     <!--<ac-static-circle-layer #layer></ac-static-circle-layer>-->
@@ -16,7 +16,8 @@
     <!--<event-test-layer (mouseMove)="form.setLongLat($event)"></event-test-layer>-->
     <!--<arc-layer #layer></arc-layer>-->
     <!--<symbology-layer #layer></symbology-layer>-->
-    <draw-on-map-layer></draw-on-map-layer>
+    <!--<draw-on-map-layer></draw-on-map-layer>-->
+    <ellipse-performance-layer></ellipse-performance-layer>
 </ac-map>
 <performance-form #form (cleanMap)="layer.removeAll();" (showEvent)="layer.setShow($event);"
                   (showMapEvent)="setShowMap($event);"
