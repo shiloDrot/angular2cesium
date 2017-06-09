@@ -17,7 +17,7 @@
     <!--<arc-layer #layer></arc-layer>-->
     <!--<symbology-layer #layer></symbology-layer>-->
     <!--<draw-on-map-layer></draw-on-map-layer>-->
-    <ellipse-performance-layer></ellipse-performance-layer>
+    <ellipse-performance-layer #layer></ellipse-performance-layer>
 </ac-map>
 <performance-form #form (cleanMap)="layer.removeAll();" (showEvent)="layer.setShow($event);"
                   (showMapEvent)="setShowMap($event);"
