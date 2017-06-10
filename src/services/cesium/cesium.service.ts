@@ -16,7 +16,13 @@ export class CesiumService {
 		this.ngZone.runOutsideAngular(() => {
 			const options = this.viewConf ? this.viewConf.viewerOptions : undefined ;
 			this.cesiumViewer = this.viewerFactory.createViewer(mapContainer, options);
+			this.clearGlobe();
 		});
+	}
+
+	private clearGlobe(): void {
+			this.cesiumViewer.scene.imageryLayers.removeAll();
+			this.cesiumViewer.scene.globe.baseColor = Cesium.Color.BLACK;
 	}
 
 	/**
