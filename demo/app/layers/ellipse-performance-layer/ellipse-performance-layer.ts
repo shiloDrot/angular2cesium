@@ -16,15 +16,23 @@ export class EllipsePerformanceLayerComponent implements OnInit {
 	Cesium = Cesium;
 	show = true;
 
+	semiMajorAxis: number;
+	semiMinorAxis: number;
+	center: any;
+
 	constructor() {
 	}
 
 	ngOnInit() {
 		//let ellipses = this._generateEllipses(1000);
+		this.center = Cesium.Cartesian3.fromRadians(Math.random(), Math.random())
+
+		this.semiMajorAxis =  100000;
+		this.semiMinorAxis = 160000;
 
 		this.ellipses$ = Observable.create((observer) => {
 			setInterval(() => {
-				let ellipses =  this._generateEllipses(30);
+				let ellipses =  this._generateEllipses(1);
 				ellipses.forEach(
 					(ellipseData) => {
 						observer.next(ellipseData);
@@ -55,12 +63,13 @@ export class EllipsePerformanceLayerComponent implements OnInit {
 				entity: {
 					id: id,
 					ellipse: {
-						center: Cesium.Cartesian3.fromRadians(Math.random(), Math.random()),
-						semiMajorAxis: 50000,
-						semiMinorAxis: 80000,
+						center: this.center,
+						semiMajorAxis: this.semiMajorAxis+=100,
+						semiMinorAxis: this.semiMinorAxis+=100,
 						rotation: 0,
 						granularity: 0.03,
-						width: 10000
+						width: 1,
+						show: true
 					}
 				}
 			});
